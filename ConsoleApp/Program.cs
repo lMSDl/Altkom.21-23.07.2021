@@ -1,4 +1,5 @@
-﻿using Services;
+﻿using ConsoleApp.Models;
+using Services;
 using Services.Interfaces;
 using System;
 
@@ -19,13 +20,33 @@ namespace ConsoleApp
 
         private static bool ReadAndExecuteCommand()
         {
-            var input = Console.ReadLine();
-            if (input == "exit")
-            {
-                return false;
+            if (Enum.TryParse<Commands>(Console.ReadLine(), true, out var command)) {
+                switch (command)
+                {
+                    case Commands.exit:
+                        return false;
+                    case Commands.delete:
+                        Delete();
+                        break;
+                    case Commands.update:
+                        break;
+                    case Commands.create:
+                        break;
+                    default:
+                        break;
+                }
             }
-
             return true;
+        }
+
+        private static void Delete()
+        {
+            string input;
+            Console.WriteLine(Properties.Resources.ProvideIndex);
+            input = Console.ReadLine();
+            //var index = int.Parse(input);
+            if (int.TryParse(input, out var index))
+                Service.Delete(index);
         }
 
         private static void DisplayStudents()
