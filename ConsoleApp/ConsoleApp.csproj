@@ -54,6 +54,14 @@
       <Project>{76ac8cfc-d816-4b73-b493-2f408bddb474}</Project>
       <Name>Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services.Interfaces\Services.Interfaces.csproj">
+      <Project>{112AB1B4-A070-4E16-A7B8-9D7DAEB70079}</Project>
+      <Name>Services.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{DEC5970A-8325-4ED1-A91A-993882E9CBFD}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,33 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Models;
+﻿using Services;
+using Services.Interfaces;
+using System;
 
 namespace ConsoleApp
 {
-    class Program
+    static class Program
     {
+        private static IStudentsService Service { get; } = new StudentsService();
+
         static void Main(string[] args)
         {
-            
-            //var shape = new Shape();
-            Shape2D shape1 = new Elipse();
+            do
+            {
+                Console.Clear();
+                DisplayStudents();
+            } while (ReadAndExecuteCommand());
+        }
 
-            shape1.Width = 5;
-            shape1.Height = 10;
+        private static bool ReadAndExecuteCommand()
+        {
+            var input = Console.ReadLine();
+            if (input == "exit")
+            {
+                return false;
+            }
 
-            var area = shape1.Area;
+            return true;
+        }
 
-            Console.WriteLine(area);
-
-
-            Shape shape2 = new Line("linia");
-            //shape2.Name
-            shape2.SomeMethod();
-
-            Console.ReadLine();
+        private static void DisplayStudents()
+        {
+            foreach(var student in Service.Read())
+            {
+                //var info = student.Index + "\t" + student.FirstName + "\t" + student.LastName + "\t" + student.BirthDate.ToShortDateString();
+                //var info = string.Format("{0}\t{2}\t{1}\t{3}", student.Index, student.LastName, student.FirstName, student.BirthDate.ToShortDateString());
+                //Console.WriteLine(info);
+                //Console.WriteLine("{0}\t{2}\t{1}\t{3}", student.Index, student.LastName, student.FirstName, student.BirthDate.ToShortDateString());
+                //Console.WriteLine("{0, 6}\t{2, 10}\t{1, 10}\t{3, 10}", student.Index, student.LastName, student.FirstName, student.BirthDate.ToShortDateString());
+                //Console.WriteLine("{0, -6}\t{2, -10}\t{1, -10}\t{3, -10}", student.Index, student.LastName, student.FirstName, student.BirthDate.ToShortDateString());
+                Console.WriteLine($"{student.Index, -6}\t{student.FirstName, -10}\t{student.LastName, -10}\t{student.BirthDate.ToShortDateString(), -10}");
+            }
         }
     }
 }
