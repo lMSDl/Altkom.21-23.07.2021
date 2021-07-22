@@ -61,11 +61,38 @@ namespace ConsoleApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Data urodzenia:.
+        /// </summary>
+        internal static string BirthDate {
+            get {
+                return ResourceManager.GetString("BirthDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Imię:.
         /// </summary>
         internal static string FirstName {
             get {
                 return ResourceManager.GetString("FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indeks:.
+        /// </summary>
+        internal static string Index {
+            get {
+                return ResourceManager.GetString("Index", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nazwisko:.
+        /// </summary>
+        internal static string LastName {
+            get {
+                return ResourceManager.GetString("LastName", resourceCulture);
             }
         }
         

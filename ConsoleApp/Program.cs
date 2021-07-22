@@ -56,10 +56,29 @@ namespace ConsoleApp
 
         private static void Edit(Student student)
         {
-            Console.WriteLine(Properties.Resources.FirstName);
-            //Console.Write(student.FirstName);
-            SendKeys.SendWait(student.FirstName);
+            DisplayPropertyToEdit(Properties.Resources.Index, student.Index.ToString());
+            if (int.TryParse(Console.ReadLine(), out var index))
+            {
+                student.Index = index;
+            }
+
+            DisplayPropertyToEdit(Properties.Resources.FirstName, student.FirstName);
             student.FirstName = Console.ReadLine();
+
+            DisplayPropertyToEdit(Properties.Resources.LastName, student.LastName);
+            student.LastName = Console.ReadLine();
+
+            DisplayPropertyToEdit(Properties.Resources.BirthDate, student.BirthDate.ToShortDateString());
+            if (DateTime.TryParse(Console.ReadLine(), out var birthDate))
+            {
+                student.BirthDate = birthDate;
+            }
+        }
+
+        private static void DisplayPropertyToEdit(string name, string value)
+        {
+            Console.WriteLine(name);
+            SendKeys.SendWait(value);
         }
 
         private static void Delete()
