@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public abstract class Person
+    public abstract class Person : Entity
     {
         protected Person()
         {
         }
 
-        protected Person(string firstName, string lastName, DateTime birthDate)
+        protected Person(string firstName, string lastName, DateTime birthDate, int id)
         {
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
             BirthDate = birthDate;

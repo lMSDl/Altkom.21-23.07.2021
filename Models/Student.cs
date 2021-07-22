@@ -12,13 +12,12 @@ namespace Models
         {
         }
 
-        public Student(string firstName, string lastName, DateTime birthDate, int index) : base(firstName, lastName, birthDate)
+        public Student(string firstName, string lastName, DateTime birthDate, int index) : base(firstName, lastName, birthDate, index)
         {
-            Index = index;
         }
 
-        public int Index { get; set; }
-        
+        public int Index { get => Id; set => Id = value; }
+
         public override string GetFullName()
         {
             return base.GetFullName() + " " + Index;

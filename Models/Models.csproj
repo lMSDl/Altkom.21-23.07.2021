@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Elipse.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Line.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Shape2D.cs" />
     <Compile Include="Shape1D.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="Teacher.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
