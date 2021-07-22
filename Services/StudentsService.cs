@@ -2,6 +2,7 @@
 using Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Services
 {
@@ -35,11 +36,11 @@ namespace Services
             //for (var i = 0; i < _students.Count; i++ /*i += 1*/ /*i = i + 1*/)
             //{
             //    var student = _students[i];
-            foreach (var student in _students)
-            {
-                if (student.Index == index)
-                    return student;
-            }
+            //foreach (var student in _students)
+            //{
+            //    if (student.Index == index)
+            //        return student;
+            //}
 
             //int i = 0;
             //while(i < _students.Count)
@@ -49,7 +50,9 @@ namespace Services
             //        return student;
             //}
 
-            return null;
+            //return null;
+
+            return _students.SingleOrDefault(x => x.Index == index);
         }
 
         public IEnumerable<Student> Read()

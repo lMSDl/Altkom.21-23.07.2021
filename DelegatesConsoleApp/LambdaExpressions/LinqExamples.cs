@@ -46,16 +46,29 @@ namespace DelegatesConsoleApp.LambdaExpressions
 
 
             // wybierz studentów o imieniu Ewa
+            var queryResult11 = students.Where(x => x.FirstName == "Ewa").ToList();
 
             // Wybierz studentów urodzonych przed 1990 rokiem
+            var queryResult12 = students.Where(x => x.BirthDate < new DateTime(1990, 1, 1)).ToList();
+            var queryResult13 = students.Where(x => x.BirthDate.Year < 1990).ToList();
 
-            // wybierz pierwszego studenta, który ma w nazwisku "Adam" i jest kobietą
+            // wybierz pierwszego studenta, który ma w nazwisku "Adam" i imię kończy się na "a"
+            var queryResult14 = students.First(x => x.LastName.Contains("Adam") && x.FirstName.EndsWith("a"));
+            var queryResult15 = students.Where(x => x.LastName.Contains("Adam")).First(x => x.FirstName.EndsWith("a"));
+            var queryResult16 = students.Where(x => x.LastName.Contains("Adam")).Where(x => x.FirstName.EndsWith("a")).First();
 
             // posortuj studentów po nazwisku a następnie o imieniu
+            var queryResult17 = students.OrderBy(x => x.LastName).ThenBy(x => x.FirstName).ToList();
 
             // wybierz datę urodzenia najmłodszego studenta
+            var queryResult18 = students.OrderBy(x => x.BirthDate).First().BirthDate;
+            var queryResult19 = students.OrderByDescending(x => x.BirthDate).Last().BirthDate;
+            var queryResult20 = students.Select(x => x.BirthDate).OrderBy(x => x).First();
 
             // podaj średni wiek studentów
+            var queryResult21 = students.Average(x => DateTime.Now.Year - x.BirthDate.Year);
+            var queryResult22 = students.Select(x => DateTime.Now.Year - x.BirthDate.Year).Average();
+            var queryResult23 = students.Select(x => DateTime.Now - x.BirthDate).Select(x => new DateTime(x.Ticks).Year).Average();
         }
     }
 }
