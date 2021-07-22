@@ -3,6 +3,7 @@ using Models;
 using Services;
 using Services.Interfaces;
 using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace ConsoleApp
@@ -30,33 +31,50 @@ namespace ConsoleApp
 
         private static void Edit(Student student)
         {
-            string indexString;
-            int index;
-            do {
-                indexString = EditProperty(Properties.Resources.Index, student.Index.ToString());
-            } while (indexString.Length != 6 || !int.TryParse(indexString, out index));
-            student.Index = index;
+            Func<string, int> converter = input => {
+                var index = int.Parse(input);
+                if(index < 100000 || index > 999999)
+                    throw new FormatException("Niepoprawna ilość znaków");
+                return index; 
+            };
+            student.Index = EditProperty(Properties.Resources.Index, student.Index, converter);
 
+            student.FirstName = EditProperty(Properties.Resources.FirstName, student.FirstName, x => x);
 
-            student.FirstName = EditProperty(Properties.Resources.FirstName, student.FirstName);
-            
-            student.LastName = EditProperty(Properties.Resources.LastName, student.LastName);
+            student.LastName = EditProperty(Properties.Resources.LastName, student.LastName, x => x);
 
-            string birthDateString;
-            DateTime birthDate;
-            do
-            {
-                birthDateString = EditProperty(Properties.Resources.BirthDate, student.BirthDate.ToShortDateString());
-            } while (!DateTime.TryParse(birthDateString, out birthDate));
-            student.BirthDate = birthDate;
+            //string birthDateString;
+            //DateTime birthDate;
+            //do
+            //{
+            //    birthDateString = EditProperty(Properties.Resources.BirthDate, student.BirthDate.ToShortDateString());
+            //} while (!DateTime.TryParse(birthDateString, out birthDate));
+            //student.BirthDate = birthDate;
         }
 
-        private static string EditProperty(string name, string value)
+        private static T EditProperty<T>(string name, T value, Func<string, T> stringToValueConverter, Func<T, string> valueToStringConverter = null)
         {
             Console.WriteLine(name);
-            SendKeys.SendWait(value);
-            return Console.ReadLine();
+            SendKeys.SendWait(valueToStringConverter?.Invoke(value) ?? value?.ToString() ?? "");
+            string input = Console.ReadLine();
+
+            try
+            {
+                return stringToValueConverter(input);
+            }
+            catch(FormatException exception)
+            {
+                Debug.WriteLine($"{exception.GetType().Name}: {exception.Message}");
+                return EditProperty(name, value, stringToValueConverter, valueToStringConverter);
+            }
         }
+
+        //private static string EditProperty(string name, string value)
+        //{
+        //    Console.WriteLine(name);
+        //    SendKeys.SendWait(value);
+        //    return Console.ReadLine();
+        //}
 
         private static void Delete()
         {
