@@ -43,13 +43,8 @@ namespace ConsoleApp
 
             student.LastName = EditProperty(Properties.Resources.LastName, student.LastName, x => x);
 
-            //string birthDateString;
-            //DateTime birthDate;
-            //do
-            //{
-            //    birthDateString = EditProperty(Properties.Resources.BirthDate, student.BirthDate.ToShortDateString());
-            //} while (!DateTime.TryParse(birthDateString, out birthDate));
-            //student.BirthDate = birthDate;
+            Func<string, DateTime> dateTimeConverter = input => DateTime.Parse(input);
+            student.BirthDate = EditProperty(Properties.Resources.BirthDate, student.BirthDate, dateTimeConverter, x => x.ToShortDateString());
         }
 
         private static T EditProperty<T>(string name, T value, Func<string, T> stringToValueConverter, Func<T, string> valueToStringConverter = null)
