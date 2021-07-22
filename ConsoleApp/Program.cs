@@ -34,12 +34,20 @@ namespace ConsoleApp
                         Update();
                         break;
                     case Commands.create:
+                        Create();
                         break;
                     default:
                         break;
                 }
             }
             return true;
+        }
+
+        private static void Create()
+        {
+            var student = new Student();
+            Edit(student);
+            Service.Create(student);
         }
 
         private static void Update()
@@ -56,29 +64,32 @@ namespace ConsoleApp
 
         private static void Edit(Student student)
         {
-            DisplayPropertyToEdit(Properties.Resources.Index, student.Index.ToString());
-            if (int.TryParse(Console.ReadLine(), out var index))
+            string indexString;
+            int index;
+            do {
+                indexString = EditProperty(Properties.Resources.Index, student.Index.ToString());
+            } while (indexString.Length != 6 || !int.TryParse(indexString, out index));
+            student.Index = index;
+
+
+            student.FirstName = EditProperty(Properties.Resources.FirstName, student.FirstName);
+            
+            student.LastName = EditProperty(Properties.Resources.LastName, student.LastName);
+
+            string birthDateString;
+            DateTime birthDate;
+            do
             {
-                student.Index = index;
-            }
-
-            DisplayPropertyToEdit(Properties.Resources.FirstName, student.FirstName);
-            student.FirstName = Console.ReadLine();
-
-            DisplayPropertyToEdit(Properties.Resources.LastName, student.LastName);
-            student.LastName = Console.ReadLine();
-
-            DisplayPropertyToEdit(Properties.Resources.BirthDate, student.BirthDate.ToShortDateString());
-            if (DateTime.TryParse(Console.ReadLine(), out var birthDate))
-            {
-                student.BirthDate = birthDate;
-            }
+                birthDateString = EditProperty(Properties.Resources.BirthDate, student.BirthDate.ToShortDateString());
+            } while (!DateTime.TryParse(birthDateString, out birthDate));
+            student.BirthDate = birthDate;
         }
 
-        private static void DisplayPropertyToEdit(string name, string value)
+        private static string EditProperty(string name, string value)
         {
             Console.WriteLine(name);
             SendKeys.SendWait(value);
+            return Console.ReadLine();
         }
 
         private static void Delete()
