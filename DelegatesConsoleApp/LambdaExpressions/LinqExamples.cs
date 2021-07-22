@@ -37,12 +37,25 @@ namespace DelegatesConsoleApp.LambdaExpressions
 
             var queryResult8 = strings.Where(x => x.Length == 5).Select(x => x.ToUpper()).ToList();
             var queryResult9 = strings.Select(x => x.Length).ToList();
-
+            
             var queryResult10 = students.Where(x => x.FirstName == "Ewa").Select(x =>
             {
                 var item = $"{x.LastName} {x.Index}";
                 return item;
             }).ToList();
+
+
+            // wybierz studentów o imieniu Ewa
+
+            // Wybierz studentów urodzonych przed 1990 rokiem
+
+            // wybierz pierwszego studenta, który ma w nazwisku "Adam" i jest kobietą
+
+            // posortuj studentów po nazwisku a następnie o imieniu
+
+            // wybierz datę urodzenia najmłodszego studenta
+
+            // podaj średni wiek studentów
         }
     }
 }
