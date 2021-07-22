@@ -1,4 +1,5 @@
 ﻿using DelegatesConsoleApp.Delegates;
+using DelegatesConsoleApp.LambdaExpressions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,11 @@ namespace DelegatesConsoleApp
 
             //eventExample.Test();
 
-            new BuildInDelegatesExample().Test();
+            //new BuildInDelegatesExample().Test();
+
+            //new LambdaExpressionsExample().Test();
+
+            new LinqExamples().Test();
 
             Console.ReadLine();
         }
