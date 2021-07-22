@@ -59,7 +59,7 @@ namespace Services
 
         public bool Update(int index, Student student)
         {
-            if (Delete(index))
+            if (!Delete(index))
                 return false;
             student.Index = index;
             Create(student);
