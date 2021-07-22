@@ -4,6 +4,7 @@ using Services;
 using Services.Interfaces;
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace ConsoleApp
@@ -23,10 +24,44 @@ namespace ConsoleApp
             if(index.HasValue)
             {
                 var student = Service.Read(index.Value);
-                Edit(student);
+                AutoEdit(student);
 
                 Service.Update(index.Value, student);
             }
+        }
+
+
+        private static void AutoEdit(Student student)
+        {
+            student.GetType().GetProperties()
+                .Where(x => x.CanWrite && x.CanRead)
+                .ToList()
+                .ForEach(property =>
+                {
+                    var value = property.GetValue(student);
+                    var name = Properties.Resources.ResourceManager.GetString(property.Name);
+                    if (string.IsNullOrEmpty(name))
+                        return;
+                    switch (property.PropertyType.Name)
+                    {
+                        case nameof(Int32):
+                            value = EditProperty(name, value, input => int.Parse(input));
+                            break;
+                        case nameof(Single):
+                            value = EditProperty(name, value, input => float.Parse(input));
+                            break;
+                        case nameof(String):
+                            value = EditProperty(name, value, input => input);
+                            break;
+                        case nameof(DateTime):
+                            value = EditProperty(name, value, input => DateTime.Parse(input), x => ((DateTime)x).ToShortDateString());
+                            break;
+                        default:
+                            return;
+                    }
+
+                    property.SetValue(student, value);
+                });
         }
 
         private static void Edit(Student student)

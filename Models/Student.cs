@@ -17,6 +17,8 @@ namespace Models
         }
 
         public int Index { get => Id; set => Id = value; }
+        public int YearOfStudy { get; set; }
+        public float Grade { get; set; }
 
         public override string GetFullName()
         {

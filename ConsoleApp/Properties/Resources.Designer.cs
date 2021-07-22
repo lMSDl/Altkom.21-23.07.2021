@@ -79,6 +79,15 @@ namespace ConsoleApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ocena.
+        /// </summary>
+        internal static string Grade {
+            get {
+                return ResourceManager.GetString("Grade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Indeks:.
         /// </summary>
         internal static string Index {
@@ -102,6 +111,15 @@ namespace ConsoleApp.Properties {
         internal static string ProvideIndex {
             get {
                 return ResourceManager.GetString("ProvideIndex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rok studiów:.
+        /// </summary>
+        internal static string YearOfStudy {
+            get {
+                return ResourceManager.GetString("YearOfStudy", resourceCulture);
             }
         }
     }

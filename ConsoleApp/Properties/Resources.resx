@@ -123,6 +123,9 @@
   <data name="FirstName" xml:space="preserve">
     <value>Imię:</value>
   </data>
+  <data name="Grade" xml:space="preserve">
+    <value>Ocena</value>
+  </data>
   <data name="Index" xml:space="preserve">
     <value>Indeks:</value>
   </data>
@@ -131,5 +134,8 @@
   </data>
   <data name="ProvideIndex" xml:space="preserve">
     <value>Podaj index:</value>
+  </data>
+  <data name="YearOfStudy" xml:space="preserve">
+    <value>Rok studiów:</value>
   </data>
 </root>
