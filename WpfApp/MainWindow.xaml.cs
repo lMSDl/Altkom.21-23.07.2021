@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using NLog;
 
 namespace WpfApp
 {
@@ -23,8 +24,11 @@ namespace WpfApp
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+        private Logger Logger { get; } = LogManager.GetCurrentClassLogger(); 
+
         public MainWindow()
         {
+            Logger.Trace(nameof(MainWindow));
             InitializeComponent();
             DataContext = this;
         }
@@ -37,11 +41,13 @@ namespace WpfApp
 
         private async void Refresh_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Trace(nameof(Refresh_Click));
             await Refresh();
         }
 
         private async Task Refresh()
         {
+            Logger.Trace(nameof(Refresh));
             RefreshButton.IsEnabled = false;
             try
             {
@@ -56,6 +62,7 @@ namespace WpfApp
 
         private async void Delete_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Trace(nameof(Delete_Click));
             DeleteButton.IsEnabled = false;
             try
             {
@@ -65,6 +72,10 @@ namespace WpfApp
                 await Service.DeleteAsync(SelectedStudent.Id);
                 await Refresh();
             }
+            catch(Exception exception)
+            {
+                Logger.Error(exception);
+            }
             finally
             {
                 DeleteButton.IsEnabled = true;
@@ -72,6 +83,7 @@ namespace WpfApp
         }
         private async void Edit_Click(object sender, RoutedEventArgs e)
         {
+            Logger.Trace(nameof(Edit_Click));
             var window = new StudentWindow(SelectedStudent);
             if(window.ShowDialog() == true)
                 await Service.UpdateAsync(SelectedStudent.Id, SelectedStudent);
