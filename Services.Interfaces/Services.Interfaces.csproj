@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICrudAsyncService.cs" />
     <Compile Include="ICrudService.cs" />
     <Compile Include="ITeachersService.cs" />
     <Compile Include="IStudentsService.cs" />

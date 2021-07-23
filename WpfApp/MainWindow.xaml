@@ -25,7 +25,7 @@
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button Content="Refresh" Click="Refresh_Click"/>
+            <Button x:Name="RefreshButton" Content="Refresh" Click="Refresh_Click"/>
         </StackPanel>
     </Grid>
 </Window>

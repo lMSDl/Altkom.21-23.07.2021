@@ -30,14 +30,22 @@ namespace WpfApp
         }
 
         IStudentsService Service = new StudentsService();
-        public ICollection<Student> Students { get; set; }
+        public IEnumerable<Student> Students { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void Refresh_Click(object sender, RoutedEventArgs e)
+        private async void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            Students = Service.Read().ToList();
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Students)));
+            RefreshButton.IsEnabled = false;
+            try
+            {
+                Students = await Service.ReadAsync();
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Students)));
+            }
+            finally
+            {
+                RefreshButton.IsEnabled = true;
+            }
         }
     }
 }

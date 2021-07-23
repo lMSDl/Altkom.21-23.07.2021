@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Services.Interfaces
 {
-    public interface IStudentsService : ICrudService<Student>
+    public interface IStudentsService : ICrudService<Student>, ICrudAsyncService<Student>
     {
     }
 }
