@@ -135,6 +135,9 @@
   <data name="ProvideIndex" xml:space="preserve">
     <value>Podaj index:</value>
   </data>
+  <data name="ProvidePath" xml:space="preserve">
+    <value>Podaj ścieżkę:</value>
+  </data>
   <data name="YearOfStudy" xml:space="preserve">
     <value>Rok studiów:</value>
   </data>

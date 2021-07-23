@@ -12,6 +12,26 @@ namespace ConsoleApp
 {
     static partial class Program
     {
+
+        private static void Export()
+        {
+            var index = GetStudentIndex();
+            if (!index.HasValue)
+                return;
+
+            var student = Service.Read(index.Value);
+            var path = GetPath();
+            student.Export(path);
+        }
+
+        private static void Import()
+        {
+            var path = GetPath();
+            var student = path.Import<Student>();
+
+            Service.Create(student);
+        }
+
         private static void Create()
         {
             var student = new Student();

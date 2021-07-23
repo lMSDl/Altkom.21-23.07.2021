@@ -36,6 +36,12 @@ namespace ConsoleApp
                 case Commands.create:
                     Create();
                     break;
+                case Commands.export:
+                    Export();
+                    break;
+                case Commands.import:
+                    Import();
+                    break;
                 default:
                     break;
             }
@@ -52,6 +58,13 @@ namespace ConsoleApp
             if (int.TryParse(input, out var index))
                 return index;
             return null;
+        }
+
+        private static string GetPath()
+        {
+            string input;
+            Console.WriteLine(Properties.Resources.ProvidePath);
+            return Console.ReadLine();
         }
 
         private static void DisplayStudents()

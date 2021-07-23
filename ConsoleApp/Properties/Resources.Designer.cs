@@ -115,6 +115,15 @@ namespace ConsoleApp.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Podaj ścieżkę:.
+        /// </summary>
+        internal static string ProvidePath {
+            get {
+                return ResourceManager.GetString("ProvidePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rok studiów:.
         /// </summary>
         internal static string YearOfStudy {
