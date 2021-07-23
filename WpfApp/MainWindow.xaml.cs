@@ -73,9 +73,8 @@ namespace WpfApp
         private async void Edit_Click(object sender, RoutedEventArgs e)
         {
             var window = new StudentWindow(SelectedStudent);
-            window.ShowDialog();
-
-            await Service.UpdateAsync(SelectedStudent.Id, SelectedStudent);
+            if(window.ShowDialog() == true)
+                await Service.UpdateAsync(SelectedStudent.Id, SelectedStudent);
         }
     }
 }
