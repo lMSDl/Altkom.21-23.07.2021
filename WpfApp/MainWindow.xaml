@@ -1,0 +1,73 @@
+﻿<Window x:Class="WpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp"
+        mc:Ignorable="d"
+        x:Name="NaszeOkno"
+        Title="MainWindow" Height="450" Width="800">
+
+    <DockPanel>
+
+        <Button DockPanel.Dock="Left" Content="Button"/>
+        <TextBox DockPanel.Dock="Top"/>
+        <Button DockPanel.Dock="Left" Content="Button"/>
+        <TextBox DockPanel.Dock="Top"/>
+        <Button DockPanel.Dock="Left" Content="Button"/>
+        <TextBox DockPanel.Dock="Top"/>
+        <TextBox DockPanel.Dock="Bottom"/>
+        <Button DockPanel.Dock="Right" Content="Button"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="250"/>
+            </Grid.RowDefinitions>
+
+            <Button Width="50" Grid.Row="1" >Button 1</Button>
+            <Button Width="20" Grid.Row="1" >Button 1</Button>
+            <Button Height="50" Grid.Column="2">Button 2</Button>
+            <Button Width="100" Height="50" Grid.Column="1" Grid.Row="3">Button 3</Button>
+            <Button Width="100" Height="50" Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2">Button 4</Button>
+
+
+        </Grid>
+
+        <StackPanel>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+        </StackPanel>
+
+        <WrapPanel Orientation="Vertical">
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+            <Label>Label</Label>
+        </WrapPanel>
+
+        <Canvas>
+            <Button Canvas.Top="200" Canvas.Left="-300">CanvasButton</Button>
+        </Canvas>
+        
+    </DockPanel>
+
+</Window>
