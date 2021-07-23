@@ -37,6 +37,11 @@ namespace WpfApp
 
         private async void Refresh_Click(object sender, RoutedEventArgs e)
         {
+            await Refresh();
+        }
+
+        private async Task Refresh()
+        {
             RefreshButton.IsEnabled = false;
             try
             {
@@ -48,6 +53,7 @@ namespace WpfApp
                 RefreshButton.IsEnabled = true;
             }
         }
+
         private async void Delete_Click(object sender, RoutedEventArgs e)
         {
             DeleteButton.IsEnabled = false;
@@ -57,7 +63,7 @@ namespace WpfApp
                 return;
 
                 await Service.DeleteAsync(SelectedStudent.Id);
-                Refresh_Click(sender, e);
+                await Refresh();
             }
             finally
             {
