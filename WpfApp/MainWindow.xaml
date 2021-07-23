@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
+        xmlns:properties="clr-namespace:WpfApp.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -18,16 +19,16 @@
             IsReadOnly="True"
             AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Index" Binding="{Binding Index}"/>
-                <DataGridTextColumn Header="FirstName" Binding="{Binding FirstName}"/>
-                <DataGridTextColumn Header="LastName" Binding="{Binding LastName}"/>
-                <DataGridTextColumn Header="BirthDate" Binding="{Binding BirthDate}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.Index}" Binding="{Binding Index}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.FirstName}" Binding="{Binding FirstName}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.LastName}" Binding="{Binding LastName}"/>
+                <DataGridTextColumn Header="{x:Static properties:Resources.BirthDate}" Binding="{Binding BirthDate}"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
-            <Button x:Name="RefreshButton" Content="Refresh" Click="Refresh_Click"/>
-            <Button x:Name="DeleteButton" Content="Delete" Click="Delete_Click"/>
+            <Button x:Name="RefreshButton" Content="{x:Static properties:Resources.Refresh}" Click="Refresh_Click"/>
+            <Button x:Name="DeleteButton" Content="{x:Static properties:Resources.Delete}" Click="Delete_Click"/>
         </StackPanel>
     </Grid>
 </Window>
