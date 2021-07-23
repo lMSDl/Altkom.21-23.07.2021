@@ -6,6 +6,7 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
+using ConsoleApp.Extensions;
 
 namespace ConsoleApp
 {
@@ -21,13 +22,13 @@ namespace ConsoleApp
         private static void Update()
         {
             var index = GetStudentIndex();
-            if(index.HasValue)
-            {
-                var student = Service.Read(index.Value);
-                AutoEdit(student);
+            if (!index.HasValue)
+                return;
+            
+            var student = Service.Read(index.Value);
+            AutoEdit(student);
 
-                Service.Update(index.Value, student);
-            }
+            Service.Update(index.Value, student);
         }
 
 
@@ -45,16 +46,16 @@ namespace ConsoleApp
                     switch (property.PropertyType.Name)
                     {
                         case nameof(Int32):
-                            value = EditProperty(name, value, input => int.Parse(input));
+                            value = EditProperty(name, value, input => input.ToInt32() /*int.Parse(input)*/) ;
                             break;
                         case nameof(Single):
-                            value = EditProperty(name, value, input => float.Parse(input));
+                            value = EditProperty(name, value, input => input.ToFloat());
                             break;
                         case nameof(String):
                             value = EditProperty(name, value, input => input);
                             break;
                         case nameof(DateTime):
-                            value = EditProperty(name, value, input => DateTime.Parse(input), x => ((DateTime)x).ToShortDateString());
+                            value = EditProperty(name, value, input => input.ToDateTime(), x => ((DateTime)x).ToShortDateString());
                             break;
                         default:
                             return;
@@ -67,7 +68,7 @@ namespace ConsoleApp
         private static void Edit(Student student)
         {
             Func<string, int> converter = input => {
-                var index = int.Parse(input);
+                var index = input.ToInt32() ;
                 if(index < 100000 || index > 999999)
                     throw new FormatException("Niepoprawna ilość znaków");
                 return index; 

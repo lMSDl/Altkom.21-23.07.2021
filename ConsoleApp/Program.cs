@@ -1,4 +1,5 @@
-﻿using ConsoleApp.Models;
+﻿using ConsoleApp.Extensions;
+using ConsoleApp.Models;
 using Models;
 using Services;
 using Services.Interfaces;
@@ -22,23 +23,21 @@ namespace ConsoleApp
 
         private static bool ReadAndExecuteCommand()
         {
-            if (Enum.TryParse<Commands>(Console.ReadLine(), true, out var command)) {
-                switch (command)
-                {
-                    case Commands.exit:
-                        return false;
-                    case Commands.delete:
-                        Delete();
-                        break;
-                    case Commands.update:
-                        Update();
-                        break;
-                    case Commands.create:
-                        Create();
-                        break;
-                    default:
-                        break;
-                }
+            switch (Console.ReadLine().ToCommand())
+            {
+                case Commands.exit:
+                    return false;
+                case Commands.delete:
+                    Delete();
+                    break;
+                case Commands.update:
+                    Update();
+                    break;
+                case Commands.create:
+                    Create();
+                    break;
+                default:
+                    break;
             }
             return true;
         }

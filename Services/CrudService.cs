@@ -25,6 +25,7 @@ namespace Services
 
         public T Read(int id)
         {
+            //Enumerable.SingleOrDefault(_entities, x => x.Id == id);
             return _entities.SingleOrDefault(x => x.Id == id);
         }
 

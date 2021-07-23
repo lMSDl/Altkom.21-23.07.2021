@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp.Models
 {
-    enum Commands
+    public enum Commands
     {
         create,
         update,
