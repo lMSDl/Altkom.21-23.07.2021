@@ -29,6 +29,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button x:Name="RefreshButton" Content="{x:Static properties:Resources.Refresh}" Click="Refresh_Click"/>
             <Button x:Name="DeleteButton" Content="{x:Static properties:Resources.Delete}" Click="Delete_Click"/>
+            <Button x:Name="EditButton" Content="{x:Static properties:Resources.Edit}" Click="Edit_Click"/>
         </StackPanel>
     </Grid>
 </Window>
