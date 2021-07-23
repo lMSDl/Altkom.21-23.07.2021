@@ -31,7 +31,7 @@ namespace Services
 
         public Task<bool> DeleteAsync(int id)
         {
-            return Task.Run(() => DeleteAsync(id));
+            return Task.Run(() => Delete(id));
         }
 
         public T Read(int id)

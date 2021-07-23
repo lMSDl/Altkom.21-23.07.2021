@@ -31,6 +31,7 @@ namespace WpfApp
 
         IStudentsService Service = new StudentsService();
         public IEnumerable<Student> Students { get; set; }
+        public Student SelectedStudent { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -45,6 +46,22 @@ namespace WpfApp
             finally
             {
                 RefreshButton.IsEnabled = true;
+            }
+        }
+        private async void Delete_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteButton.IsEnabled = false;
+            try
+            {
+                if (SelectedStudent == null)
+                return;
+
+                await Service.DeleteAsync(SelectedStudent.Id);
+                Refresh_Click(sender, e);
+            }
+            finally
+            {
+                DeleteButton.IsEnabled = true;
             }
         }
     }

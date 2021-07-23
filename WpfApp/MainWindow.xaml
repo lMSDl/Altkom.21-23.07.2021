@@ -14,6 +14,7 @@
         <DataGrid
             Grid.Row="0"
             ItemsSource="{Binding Students}"
+            SelectedItem="{Binding SelectedStudent}"
             IsReadOnly="True"
             AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -26,6 +27,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <Button x:Name="RefreshButton" Content="Refresh" Click="Refresh_Click"/>
+            <Button x:Name="DeleteButton" Content="Delete" Click="Delete_Click"/>
         </StackPanel>
     </Grid>
 </Window>
